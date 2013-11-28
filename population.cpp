@@ -1,53 +1,11 @@
-#include <iostream>
-#include <cstdio>
-#include <cstdlib>
-#include <ctime>
-#include <vector>
-#include <list>
-using namespace std;
+#include "population.hpp"
 
-class Gene {
-  private:
-    int gene_size;
-  public:
-    vector <bool> bases;
-    Gene();
-    void gene_setup(int igene_size);
-    void print();
-    void randomize();
-    bool set_base(int i, bool val);
-    int get_size();
-};
+namespace MuhGenes {
 
-class Genome {
-  private:
-    int genome_size;
-    int gene_size;
-  public:
-    double fitness;
-    vector <Gene> genes;
-    Genome();
-    void genome_setup(int igenome_size, int igene_size);
-    void print();
-};
-
-class Population {
-  private:
-    int genome_size;
-    int gene_size;
-  public:
-    int population_size;
-    list <Genome> genomes;
-    Population();
-    void population_setup(int in, int igenome_n, int igene_n);
-    void breed_ongene();
-    void evaluate();
-    void add_genome();
-    void delete_genome(int n);
-    void print();
-    void print_avg_fitness();
-    double get_avg_fitness();
-};
+Population::Population()
+{
+  srand48(time(0));
+}
 
 void Population::evaluate()
 {
@@ -193,42 +151,6 @@ void Population::delete_genome(int n)
   genomes.pop_front();
 }
 
-Population::Population()
-{
-  srand48(time(0));
-}
-
-Gene::Gene()
-{
-}
-
-void Gene::gene_setup(int igene_size)
-{
-  gene_size = igene_size;
-  for (int i = 0; i < gene_size; i++) {
-    bases.push_back(0);
-  }
-  randomize();
-}
-
-Genome::Genome()
-{
-  fitness = -1.0;
-}
-
-void Genome::genome_setup(int igenome_size, int igene_size)
-{
-  genome_size = igenome_size;
-  gene_size = igene_size;
-
-  Gene temp;
-
-  for (int i = 0; i < genome_size; i++) {
-    genes.push_back(temp);
-    genes[i].gene_setup(gene_size);
-  }
-}
-
 void Population::population_setup(int ipopulation_size, int igenome_size, int igene_size)
 {
   population_size = ipopulation_size;
@@ -252,48 +174,4 @@ void Population::print()
   }
 }
 
-void Genome::print()
-{
-  for (int i = 0; i < genome_size; i++) {
-    genes[i].print();
-  }
-  if (fitness != -1.0) {
-    printf(" fitness: %f", fitness);
-  }
-  printf("\n");
-}
-
-
-void Gene::print()
-{
-  for (int i = 0; i < gene_size; i++) {
-    printf("%d", static_cast <bool> (bases[i]));
-  }
-  printf(" ");
-}
-
-void Gene::randomize()
-{
-  for (int i = 0; i < gene_size; i++) {
-    if (drand48() > 0.5) {
-      bases[i] = 1;
-    } else {
-      bases[i] = 0;
-    }
-  }
-}
-
-bool Gene::set_base(int i, bool val)
-{
-  if (i < gene_size && i >= 0) {
-    bases[i] = val;
-    return true;
-  } else {
-    return false;
-  }
-}
-
-int Gene::get_size()
-{
-  return gene_size;
-}
+} // namespace MuhGenes
