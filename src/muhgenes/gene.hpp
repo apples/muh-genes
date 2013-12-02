@@ -1,18 +1,18 @@
-#ifndef MUHGENES_GENE_H
-#define MUHGENES_GENE_H
+#ifndef MUHGENES_GENE_HPP
+#define MUHGENES_GENE_HPP
 
+#include <functional>
 #include <vector>
 
 namespace MuhGenes {
 
 class Gene {
-  private:
     int gene_size;
     
   public:
     std::vector <bool> bases;
     
-    void gene_setup(int igene_size);
+    Gene(int igene_size);
     void randomize();
     bool set_base(int i, bool val);
     
@@ -23,4 +23,4 @@ class Gene {
 
 } // namespace MuhGenes
 
-#endif // MUHGENES_GENE_H
+#endif // MUHGENES_GENE_HPP
