@@ -23,7 +23,7 @@ DEP_FILES := $(patsubst src/%.cpp,dep/%.d,$(SRC_FILES))
 
 MAIN_EXE = genetic.exe
 
-# Main Target
+# Targets
 
 .PHONY: all
 all: $(MAIN_EXE)
@@ -31,8 +31,9 @@ all: $(MAIN_EXE)
 $(MAIN_EXE): $(OBJ_FILES)
 	$(LD) $(LDFLAGS) -o $@ $^
 
+# All Sources
+
 obj/%.o: src/%.cpp dep/%.d
-	@echo $@ prereqs $^
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
 
