@@ -3,6 +3,7 @@
 
 #include "genome.hpp"
 
+#include <iostream>
 #include <list>
 #include <random>
 
@@ -25,9 +26,9 @@ class Population {
     
     void print_avg_fitness();
     double get_avg_fitness();
-    
-    void print() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Population& pop);
 
 } // namespace MuhGenes
 

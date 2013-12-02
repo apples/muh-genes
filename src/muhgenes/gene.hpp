@@ -1,6 +1,7 @@
 #ifndef MUHGENES_GENE_HPP
 #define MUHGENES_GENE_HPP
 
+#include <iostream>
 #include <functional>
 #include <vector>
 
@@ -17,9 +18,9 @@ class Gene {
     bool set_base(int i, bool val);
     
     int get_size() const;
-    
-    void print() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Gene& gene);
 
 } // namespace MuhGenes
 

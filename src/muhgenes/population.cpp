@@ -150,11 +150,12 @@ void Population::delete_genome(int n)
   genomes.pop_front();
 }
 
-void Population::print() const
+std::ostream& operator<<(std::ostream& out, const Population& pop)
 {
-  for (auto&& genome : genomes) {
-    genome.print();
+  for (auto&& genome : pop.genomes) {
+    out << genome << endl;
   }
+  return out;
 }
 
 } // namespace MuhGenes

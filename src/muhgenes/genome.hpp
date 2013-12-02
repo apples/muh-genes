@@ -3,6 +3,7 @@
 
 #include "gene.hpp"
 
+#include <iostream>
 #include <vector>
 
 namespace MuhGenes {
@@ -16,9 +17,9 @@ class Genome {
     std::vector <Gene> genes;
     
     Genome(int igenome_size, int igene_size);
-    
-    void print() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Genome& genome);
 
 } // namespace MuhGenes
 

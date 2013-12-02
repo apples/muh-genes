@@ -2,8 +2,6 @@
 
 #include "rng.hpp"
 
-#include <iostream>
-
 using namespace std;
 
 namespace MuhGenes {
@@ -37,12 +35,13 @@ int Gene::get_size() const
   return gene_size;
 }
 
-void Gene::print() const
+std::ostream& operator<<(std::ostream& out, const Gene& gene)
 {
-  for (int i = 0; i < gene_size; i++) {
-    cout << bases[i];
+  for (auto&& b : gene.bases) {
+    out << b;
   }
-  cout << ' ';
+  out << ' ';
+  return out;
 }
 
 } // namespace MuhGenes

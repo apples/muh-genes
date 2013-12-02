@@ -18,15 +18,15 @@ Genome::Genome(int igenome_size, int igene_size)
   }
 }
 
-void Genome::print() const
+std::ostream& operator<<(std::ostream& out, const Genome& genome)
 {
-  for (auto&& g : genes) {
-    g.print();
+  for (auto&& gene : genome.genes) {
+    out << gene;
   }
-  if (fitness != -1.0) {
-    cout << " fitness: " << fitness;
+  if (genome.fitness != -1.0) {
+    out << " fitness: " << genome.fitness;
   }
-  cout << endl;
+  return out;
 }
 
 } // namespace MuhGenes
